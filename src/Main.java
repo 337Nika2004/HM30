@@ -13,7 +13,6 @@ public class Main {
         System.out.println("Количество дней доставки: " + calcCarDeliveryDays(40));
         System.out.println("Количество дней доставки: " + calcCarDeliveryDays(80));
         System.out.println("Количество дней доставки: " + calcCarDeliveryDays(2));
-
     }
     private static void checkIsLeapYear(int year) {
         if (year >= 1584 && (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)) {

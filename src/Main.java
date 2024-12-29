@@ -2,57 +2,55 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        checkIsLeapYear(2020);
-        checkIsLeapYear(2024);
-        checkIsLeapYear(1990);
+        // Задача 1: Проверка на високосный год
+        System.out.println("Задача 1");
+        checkLeapYear(2024);
+        checkLeapYear(2023);
 
-        defineAppVersion(0, 2024);
-        defineAppVersion(1,2021);
-        defineAppVersion(3, 1990);
+        // Задача 2: Установка приложения
+        System.out.println("\nЗадача 2");
+        recommendAppVersion(0, 2014); // iOS, старше 2015
+        recommendAppVersion(1, 2020); // Android, после 2015
 
-        System.out.println("Количество дней доставки: " + calcCarDeliveryDays(40));
-        System.out.println("Количество дней доставки: " + calcCarDeliveryDays(80));
-        System.out.println("Количество дней доставки: " + calcCarDeliveryDays(2));
+        // Задача 3: Расчет дней доставки
+        System.out.println("\nЗадача 3");
+        System.out.println("Потребуется дней: " + calculateDeliveryDays(15)); // В пределах 20 км
+        System.out.println("Потребуется дней: " + calculateDeliveryDays(50)); // От 20 до 60 км
+        System.out.println("Потребуется дней: " + calculateDeliveryDays(95)); // От 60 до 100 км
+        System.out.println("Потребуется дней: " + calculateDeliveryDays(150)); // Свыше 100 км
     }
-    private static void checkIsLeapYear(int year) {
-        if (year >= 1584 && (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)) {
-            System.out.println(year + " високосный год");
+
+    // Задача 1: Метод для проверки високосного года
+    public static void checkLeapYear(int year) {
+        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+            System.out.println(year + " год — високосный год.");
         } else {
-            System.out.println(year + " не високосный год");
+            System.out.println(year + " год — невисокосный год.");
         }
     }
 
-    private static void defineAppVersion(int mobileOs, int mobileYear) {
-        String mobileOsName;
-
-        switch (mobileOs){
-            case 0:
-                mobileOsName = " Android";
-                break;
-            case 1:
-                mobileOsName = " iOS";
-                break;
-            default:
-                mobileOsName = " неизвестная ОС";
-        }
+    // Задача 2: Метод для рекомендации версии приложения
+    public static void recommendAppVersion(int osType, int deviceYear) {
         int currentYear = LocalDate.now().getYear();
-        if (mobileYear != currentYear) {
-            System.out.println("Для ОС" + mobileOsName + " установите lite-версию");
+        String osName = osType == 0 ? "iOS" : "Android";
+        if (deviceYear < 2015) {
+            System.out.println("Установите облегченную версию приложения для " + osName + " по ссылке.");
         } else {
-            System.out.println("Для ОС" + mobileOsName + " установите обычную версию");
+            System.out.println("Установите обычную версию приложения для " + osName + " по ссылке.");
         }
     }
-    private static int calcCarDeliveryDays(int distance){
-        int deliveryDays;
 
-        if (distance <= 20){
-            deliveryDays = 1;
-        } else if (distance <= 60) {
-            deliveryDays = 2;
+    // Задача 3: Метод для расчета дней доставки
+    public static int calculateDeliveryDays(int deliveryDistance) {
+        if (deliveryDistance <= 20) {
+            return 1;
+        } else if (deliveryDistance <= 60) {
+            return 2;
+        } else if (deliveryDistance <= 100) {
+            return 3;
         } else {
-            deliveryDays = 3;
+            System.out.println("Доставка не осуществляется на расстояние более 100 км.");
+            return 0; // Нулевая доставка
         }
-
-        return deliveryDays;
     }
 }

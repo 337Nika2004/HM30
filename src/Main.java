@@ -2,6 +2,7 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
+
         // Задача 1: Проверка на високосный год
         System.out.println("Задача 1");
         checkLeapYear(2024);
